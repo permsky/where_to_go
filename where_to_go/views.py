@@ -20,8 +20,7 @@ def index(request):
         }
         features.append(feature)
     context = {
-        "places_geojson":
-        {
+        "places_geojson": {
             "type": "FeatureCollection",
             "features": features
         }
