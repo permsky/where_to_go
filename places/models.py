@@ -14,3 +14,20 @@ class Place(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class PlaceImage(models.Model):
+    place = models.ForeignKey(
+        Place,
+        on_delete=models.CASCADE,
+        verbose_name='фото места'
+    )
+    precedence = models.SmallIntegerField('очередность отображения фото')
+    image = models.ImageField('фото')
+
+    class Meta:
+        verbose_name = 'Фотография места'
+        verbose_name_plural = 'Фотографии мест'
+
+    def __str__(self):
+        return f'{self.precedence} {self.place.title}'
