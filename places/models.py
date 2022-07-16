@@ -29,6 +29,7 @@ class PlaceImage(models.Model):
     class Meta:
         verbose_name = 'Фотография места'
         verbose_name_plural = 'Фотографии мест'
+        unique_together = [['place', 'precedence']]
 
     def __str__(self):
         return f'{self.precedence} {self.place.title}'

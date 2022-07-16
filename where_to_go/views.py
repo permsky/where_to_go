@@ -1,11 +1,13 @@
 from django.shortcuts import render
+from django.urls import reverse
 
 from places.models import Place
 
 
 def index(request):
     features = list()
-    for place in Place.objects.all():
+    places = Place.objects.all()
+    for place in places:
         feature = {
             "type": "Feature",
             "geometry": {
@@ -15,7 +17,10 @@ def index(request):
             "properties": {
                 "title": place.title,
                 "placeId": place.id,
-                "detailsUrl": f"/static/places/{place.id}.json"
+                "detailsUrl": reverse(
+                    'place_json',
+                    kwargs={'place_id': place.id}
+                )
             }
         }
         features.append(feature)
