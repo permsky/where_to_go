@@ -24,13 +24,17 @@ class PlaceImage(models.Model):
         verbose_name='фото места',
         related_name='images'
     )
-    precedence = models.SmallIntegerField('очередность отображения фото')
+    precedence = models.SmallIntegerField(
+        'очередность отображения фото',
+        default=0,
+        db_index=True
+    )
     image = models.ImageField('фото')
 
     class Meta:
         verbose_name = 'Фотография места'
         verbose_name_plural = 'Фотографии мест'
-        unique_together = [['place', 'precedence']]
+        ordering = ['precedence']
 
     def __str__(self):
         return f'{self.precedence} {self.place.title}'
