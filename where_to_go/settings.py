@@ -33,7 +33,7 @@ SECRET_KEY = env.str('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', True)
 
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', ['127.0.0.1', 'localhost', '[::1]'])
 
 
 # Application definition
@@ -137,3 +137,7 @@ MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', False)
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', False)
+SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', False)
