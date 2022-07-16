@@ -20,7 +20,8 @@ class PlaceImage(models.Model):
     place = models.ForeignKey(
         Place,
         on_delete=models.CASCADE,
-        verbose_name='фото места'
+        verbose_name='фото места',
+        related_name='images'
     )
     precedence = models.SmallIntegerField('очередность отображения фото')
     image = models.ImageField('фото')
