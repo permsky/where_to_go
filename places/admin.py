@@ -5,6 +5,7 @@ from .models import Place, PlaceImage
 
 class ImageInline(admin.TabularInline):
     model = PlaceImage
+    readonly_fields = ('get_preview',)
 
 
 @admin.register(Place)
@@ -25,6 +26,8 @@ class PlaceAdmin(admin.ModelAdmin):
 class PlaceImageAdmin(admin.ModelAdmin):
     list_display = [
         'place',
-        'precedence',
         'image',
+        'get_preview',
+        'precedence',
     ]
+    readonly_fields = ['get_preview']
