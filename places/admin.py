@@ -22,6 +22,7 @@ class PlaceAdmin(SortableAdminBase, admin.ModelAdmin):
         'longitude',
         'latitude',
     ]
+    search_fields = ['title']
     inlines = [
         ImageInline,
     ]
