@@ -36,7 +36,7 @@ python manage.py runserver
 ```
 - Загрузите данные об интересных местах в базу данных командой:
 ```bash
-python manage.py load_from_json
+python manage.py load_places
 ```
 
 После этого главная страница будет доступна по адресу [127.0.0.1:8000](http://127.0.0.1:8000), админка — [127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
