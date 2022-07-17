@@ -40,9 +40,9 @@ class PlaceImage(models.Model):
 
     def __str__(self):
         return f'{self.precedence} {self.place.title}'
-    
+
     def get_preview(self):
         return format_html(
             '<img src="{url}" height=200 />',
-            url = self.image.url
+            url=self.image.url
         )
