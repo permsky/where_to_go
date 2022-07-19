@@ -12,21 +12,21 @@ def fill_database(directory):
     filepaths = Path(directory).rglob('*.json')
     for filepath in filepaths:
         with open(filepath, encoding='UTF-8', mode='r') as f:
-            place = json.load(f)
-        place_obj, _ = Place.objects.get_or_create(
-            title=place['title'],
-            description_short=place['description_short'],
-            description_long=place['description_long'],
-            longitude=place['coordinates']['lng'],
-            latitude=place['coordinates']['lat']
+            serialized_place = json.load(f)
+        place, _ = Place.objects.get_or_create(
+            title=serialized_place['title'],
+            description_short=serialized_place['description_short'],
+            description_long=serialized_place['description_long'],
+            longitude=serialized_place['coordinates']['lng'],
+            latitude=serialized_place['coordinates']['lat']
         )
-        for img_url in place['imgs']:
+        for img_url in serialized_place['imgs']:
             response = requests.get(img_url)
             response.raise_for_status()
             parsed_url = urlparse(img_url)
             content = ContentFile(response.content)
             place_img, _ = PlaceImage.objects.get_or_create(
-                place=place_obj
+                place=place
             )
             place_img.image.save(
                 Path(parsed_url.path).name,
