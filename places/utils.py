@@ -10,7 +10,7 @@ from places.models import Place, PlaceImage
 
 def read_from_json(filepath):
     with open(filepath, encoding='UTF-8', mode='r') as f:
-        return json.loads(f.read())
+        return json.load(f)
 
 
 def fill_database(directory):
