@@ -55,7 +55,7 @@ python manage.py createsuperuser
 ```bash
 python manage.py load_places
 ```
-Загрузка данных выполняется из json-файлов следующего вида:
+Загрузка данных выполняется из json-файлов, расположенных в каталоге `place_examples`. Содержимое одного из них:
 ```{
     "title": "Антикафе Bizone",
     "imgs": [

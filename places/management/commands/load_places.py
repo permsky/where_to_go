@@ -8,6 +8,6 @@ from where_to_go.settings import BASE_DIR
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        places_json_directory = os.path.join(BASE_DIR, 'places_json')
+        places_json_directory = os.path.join(BASE_DIR, 'place_examples')
 
         fill_database(places_json_directory)
