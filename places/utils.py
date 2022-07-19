@@ -4,7 +4,6 @@ from urllib.parse import urlparse
 
 import requests
 from django.core.files.base import ContentFile
-from django.db.utils import IntegrityError
 
 from places.models import Place, PlaceImage
 
