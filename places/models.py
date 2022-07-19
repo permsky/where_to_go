@@ -30,7 +30,7 @@ class PlaceImage(models.Model):
         default=0,
         db_index=True
     )
-    image = models.ImageField('фото', default='default.jpg')
+    image = models.ImageField('фото', default=None)
 
     class Meta:
         verbose_name = 'Фотография места'
