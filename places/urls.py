@@ -4,5 +4,5 @@ from . import views
 
 
 urlpatterns = [
-    path('places/<int:place_id>/', views.get_place, name='place_json'),
+    path('<int:place_id>/', views.get_place, name='place_json'),
 ]
