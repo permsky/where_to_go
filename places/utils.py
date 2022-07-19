@@ -8,15 +8,11 @@ from django.core.files.base import ContentFile
 from places.models import Place, PlaceImage
 
 
-def read_from_json(filepath):
-    with open(filepath, encoding='UTF-8', mode='r') as f:
-        return json.load(f)
-
-
 def fill_database(directory):
     filepaths = Path(directory).rglob('*.json')
     for filepath in filepaths:
-        place = read_from_json(str(filepath))
+        with open(filepath, encoding='UTF-8', mode='r') as f:
+            place = json.load(f)
         place_obj, _ = Place.objects.get_or_create(
             title=place['title'],
             description_short=place['description_short'],
