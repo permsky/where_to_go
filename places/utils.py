@@ -22,18 +22,19 @@ def fill_database(directory):
                 'latitude': serialized_place['coordinates']['lat']
             }
         )
-        if is_not_found:
-            for number, img_url in enumerate(serialized_place['imgs']):
-                response = requests.get(img_url)
-                response.raise_for_status()
-                parsed_url = urlparse(img_url)
-                content = ContentFile(response.content)
-                place_img, _ = PlaceImage.objects.get_or_create(
-                    place=place,
-                    precedence=number
-                )
-                place_img.image.save(
-                    Path(parsed_url.path).name,
-                    content,
-                    save=True
-                )
+        if not is_not_found:
+            continue
+        for number, img_url in enumerate(serialized_place['imgs']):
+            response = requests.get(img_url)
+            response.raise_for_status()
+            parsed_url = urlparse(img_url)
+            content = ContentFile(response.content)
+            place_img, _ = PlaceImage.objects.get_or_create(
+                place=place,
+                precedence=number
+            )
+            place_img.image.save(
+                Path(parsed_url.path).name,
+                content,
+                save=True
+            )
