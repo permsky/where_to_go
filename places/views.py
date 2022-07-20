@@ -6,9 +6,8 @@ from .models import Place
 
 def get_place(request, place_id):
     place = get_object_or_404(Place, id=int(place_id))
-    images = list()
-    for img in place.images.all().order_by('precedence'):
-        images.append(img.image.url)
+    place_images = place.images.all().order_by('precedence')
+    images = [img.image.url for img in place_images]
     serialized_place = {
         'title': place.title,
         'imgs': images,
